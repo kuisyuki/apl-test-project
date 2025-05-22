@@ -1,37 +1,59 @@
+# Android
+android/.gradle/
+android/build/
+android/local.properties
+android/.idea/
+android/*.iml
+android/*.iws
+android/*.ipr
+android/captures/
+android/.externalNativeBuild/
+android/.cxx/
+android/app/build/
+android/app/release/
+android/*.jks
+android/*.keystore
+android/google-services.json
+android/*.hprof
+
+# iOS
+ios/Pods/
+ios/*.xcworkspace/
+ios/*.xcodeproj/
+ios/*.xcuserstate
+ios/*.xcuserdatad/
+ios/build/
+ios/DerivedData/
+ios/.DS_Store
+ios/*.hmap
+ios/*.ipa
+ios/*.dSYM.zip
+ios/*.dSYM
+
+# General
+.DS_Store
+*.log
+
 # Gradle files
 .gradle/
-build/
-
-# Local configuration file
-local.properties
 
 # Android Studio generated files
-.idea/
 *.iml
 *.iws
 *.ipr
-.DS_Store
-
-# Android Studio captures folder
-captures/
 
 # External native build folder
-.externalNativeBuild/
 .cxx/
 
 # Version control
 vcs.xml
-
-# App specific
-app/build/
-app/release/
 
 # Keystore files
 *.jks
 *.keystore
 
 # Google Services (e.g. APIs or Firebase)
-google-services.json
+*.json
 
 # Android Profiling
 *.hprof 

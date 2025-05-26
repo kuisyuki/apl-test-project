@@ -13,7 +13,17 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        // 必要に応じてボタンのクリックリスナーをここで設定できます
+        val button = view.findViewById<Button>(R.id.button)
+        button.setOnClickListener {
+            val toastLayout = layoutInflater.inflate(R.layout.custom_toast, null)
+            val toastText = toastLayout.findViewById<android.widget.TextView>(R.id.toast_text)
+            toastText.text = "Hello World"
+            val toast = android.widget.Toast(requireContext())
+            toast.view = toastLayout
+            toast.duration = android.widget.Toast.LENGTH_SHORT
+            toast.setGravity(android.view.Gravity.BOTTOM or android.view.Gravity.CENTER_HORIZONTAL, 0, 120)
+            toast.show()
+        }
         return view
     }
 } 

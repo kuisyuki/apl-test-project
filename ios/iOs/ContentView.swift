@@ -7,24 +7,6 @@
 
 import SwiftUI
 
-struct UseServiceView: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("つかうサービス")
-                .font(.title)
-                .padding(.top, 40)
-                .padding(.bottom, 16)
-                .frame(maxWidth: .infinity, alignment: .center)
-            Text("ゲームの課金につかう")
-            Text("ポンタグッズや特典への交換につかう")
-            Text("その他サービスにつかう")
-            Spacer()
-        }
-        .padding(.horizontal)
-        .background(Color.white)
-    }
-}
-
 struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var lifecycleHistory: String = ""
@@ -49,79 +31,62 @@ struct ContentView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                VStack {
-                    Spacer()
-                    Group {
-                        switch selectedTab {
-                        case .home:
-                            VStack {
-                                Spacer()
-                                Text(lifecycleHistory)
-                                    .font(.title2)
-                                    .foregroundColor(.orange)
-                                    .padding()
-                                    .multilineTextAlignment(.center)
-                                Spacer()
-                                Button("CLICK ME") {
-                                    showHelloToast = true
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                        showHelloToast = false
-                                    }
-                                }
-                                .padding()
-                                .background(Color(.systemGray5))
-                                .cornerRadius(8)
-                                .shadow(radius: 2)
-                                Spacer()
-                            }
-                        case .coupon:
-                            VStack {
-                                Spacer()
-                                Text("お店を選ぶ")
-                                    .font(.title2)
-                                Spacer()
-                            }
-                        case .card:
-                            VStack {
-                                Spacer()
-                                Text("バーコードが表示されるエリア")
-                                    .font(.title2)
-                                Spacer()
-                            }
-                        case .save:
-                            VStack {
-                                Spacer()
-                                Text("ためるサービス")
-                                    .font(.title2)
-                                Spacer()
-                            }
-                        case .use:
-                            UseServiceView()
-                        }
-                    }
-                    Spacer()
-                    HStack {
-                        Button("ホーム") { selectedTab = .home }
-                            .foregroundColor(selectedTab == .home ? .blue : .gray)
-                        Spacer()
-                        Button("クーポン") { selectedTab = .coupon }
-                            .foregroundColor(selectedTab == .coupon ? .blue : .gray)
-                        Spacer()
-                        Button("カード") { selectedTab = .card }
-                            .foregroundColor(selectedTab == .card ? .blue : .gray)
-                        Spacer()
-                        Button("ためる") { selectedTab = .save }
-                            .foregroundColor(selectedTab == .save ? .blue : .gray)
-                        Spacer()
-                        Button("つかう") { selectedTab = .use }
-                            .foregroundColor(selectedTab == .use ? .blue : .gray)
-                    }
-                    .padding(.horizontal)
-                    .padding(.bottom, 20)
+        TabView(selection: $selectedTab) {
+            HomeView(lifecycleHistory: $lifecycleHistory, showHelloToast: $showHelloToast)
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("ホーム")
                 }
-                // ライフサイクル用トースト（上部）
+                .tag(Tab.home)
+            CouponView()
+                .tabItem {
+                    Image(systemName: "tag")
+                    Text("クーポン")
+                }
+                .tag(Tab.coupon)
+            CardView()
+                .tabItem {
+                    Image(systemName: "creditcard")
+                    Text("カード")
+                }
+                .tag(Tab.card)
+            SaveView()
+                .tabItem {
+                    Image(systemName: "tray.and.arrow.down")
+                    Text("ためる")
+                }
+                .tag(Tab.save)
+            UseServiceView()
+                .tabItem {
+                    Image(systemName: "doc.text")
+                    Text("つかう")
+                }
+                .tag(Tab.use)
+        }
+        .onChange(of: scenePhase) { newPhase in
+            switch newPhase {
+            case .active:
+                showLifecycle("active (onResume)")
+                print("onResume (active)")
+            case .inactive:
+                showLifecycle("inactive (onPause)")
+                print("onPause (inactive)")
+            case .background:
+                showLifecycle("background (onStop)")
+                print("onStop (background)")
+            @unknown default:
+                showLifecycle("unknown")
+                print("unknown phase")
+            }
+        }
+        .onAppear {
+            showLifecycle("onCreate/onStart")
+            print("onCreate/onStart")
+        }
+        .background(Color.white)
+        .ignoresSafeArea()
+        .overlay(
+            Group {
                 if showLifecycleToast {
                     VStack {
                         HStack {
@@ -140,7 +105,6 @@ struct ContentView: View {
                     .transition(.move(edge: .top).combined(with: .opacity))
                     .animation(.easeInOut, value: showLifecycleToast)
                 }
-                // Hello Worldトースト（下部）
                 if showHelloToast {
                     VStack {
                         Spacer()
@@ -160,29 +124,7 @@ struct ContentView: View {
                     .animation(.easeInOut, value: showHelloToast)
                 }
             }
-            .onChange(of: scenePhase) { newPhase in
-                switch newPhase {
-                case .active:
-                    showLifecycle("active (onResume)")
-                    print("onResume (active)")
-                case .inactive:
-                    showLifecycle("inactive (onPause)")
-                    print("onPause (inactive)")
-                case .background:
-                    showLifecycle("background (onStop)")
-                    print("onStop (background)")
-                @unknown default:
-                    showLifecycle("unknown")
-                    print("unknown phase")
-                }
-            }
-            .onAppear {
-                showLifecycle("onCreate/onStart")
-                print("onCreate/onStart")
-            }
-            .background(Color.white)
-            .ignoresSafeArea()
-        }
+        )
     }
 }
 

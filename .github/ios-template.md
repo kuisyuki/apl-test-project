@@ -1,39 +1,31 @@
-# iOS Template
+# iOS プロジェクト構成ガイド
 
-iOSアプリプロジェクトの最小構成テンプレートです。
+iOSアプリの一般的なディレクトリ構成と、各ディレクトリにどのような用途のファイルを配置するかのガイドです。
 
-## ディレクトリ構成
+## ディレクトリ構成と用途
 
 ```
-ios-template/
-├── iOs.xcodeproj/
-│   └── project.pbxproj
-├── iOs/
-│   ├── ContentView.swift
-│   ├── iOsApp.swift
-│   └── Assets.xcassets/
-│       ├── AppIcon.appiconset/
-│       │   └── Contents.json
-│       └── AccentColor.colorset/
-│           └── Contents.json
-├── iOsTests/
-│   └── iOsTests.swift
-├── iOsUITests/
-│   ├── iOsUITests.swift
-│   └── iOsUITestsLaunchTests.swift
+ios-project/
+├── <App名>.xcodeproj/
+│   └─ Xcodeプロジェクト設定ファイル
+├── <App名>/
+│   ├── Swift/SwiftUIのソースコード
+│   ├── Assets.xcassets/ ─ 画像や色などのアセット
+│   └── その他リソース（Info.plist等）
+├── <App名>Tests/
+│   └─ 単体テストコード
+├── <App名>UITests/
+│   └─ UIテストコード
+└── ...
 ```
 
-## 必要なファイル一覧
-
-- `iOs.xcodeproj/project.pbxproj` : Xcodeプロジェクト設定ファイル
-- `iOs/ContentView.swift` : メインUIのSwiftUIビュー
-- `iOs/iOsApp.swift` : アプリのエントリーポイント
-- `iOs/Assets.xcassets/AppIcon.appiconset/Contents.json` : アプリアイコン設定
-- `iOs/Assets.xcassets/AccentColor.colorset/Contents.json` : アクセントカラー設定
-- `iOsTests/iOsTests.swift` : 単体テストコード
-- `iOsUITests/iOsUITests.swift` : UIテストコード
-- `iOsUITests/iOsUITestsLaunchTests.swift` : UI起動テストコード
+## 用途ごとの配置例
+- **プロジェクト設定**: `<App名>.xcodeproj/` にXcodeプロジェクトファイル
+- **アプリ本体**: `<App名>/` にSwift/SwiftUIコード、リソース、アセット
+- **画像・色などのアセット**: `<App名>/Assets.xcassets/` に配置
+- **テストコード**: `<App名>Tests/`, `<App名>UITests/` に配置
+- **設定ファイル**: `Info.plist` などは `<App名>/` 直下
 
 ## 備考
-- バンドルIDやアプリ名はプロジェクトごとに適宜変更してください。
-- 追加のリソースや設定が必要な場合は、このテンプレートを拡張してご利用ください。 
+- バンドルIDやディレクトリ名はプロジェクトごとに調整してください。
+- 追加のリソースや設定が必要な場合は、用途に応じてディレクトリを拡張してください。 

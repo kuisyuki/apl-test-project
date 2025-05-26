@@ -3,27 +3,11 @@ description:
 globs: 
 alwaysApply: false
 ---
-# プロジェクト初期化ルール（Android/iOS両対応）
+# プロジェクト初期化・構成レビュー ルール
 
-このルールは、Android（Kotlin）とiOS（Swift）アプリの最小構成プロジェクトを自動生成するためのものです。
+このルールは、下記テンプレート（Android/iOS）のディレクトリ構成ガイドをインクルードし、
+- プロジェクトのディレクトリ構成がガイドに沿っているかをチェックします。
+- 構成や内容について汎用的な観点からもレビューを行います。
 
-【共通】
-- プロジェクト名を指定する（例: MyApp）
-
-【Androidの場合】
-- appディレクトリ以下にKotlin用のディレクトリ構成を作る
-- build.gradle, settings.gradle, gradle.propertiesをプロジェクト直下に作成
-- app/build.gradle, app/src/main/AndroidManifest.xml, app/src/main/res/values/strings.xml, app/src/main/res/layout/activity_main.xml, app/src/main/kotlin/パッケージ名/MainActivity.kt などを生成
-- アイコン（ic_launcher, ic_launcher_round）はベクターXMLでダミーを用意
-- 依存関係やビルド設定はKotlin/AndroidX対応
-
-【iOSの場合】
-- プロジェクト名のディレクトリを作成
-- AppDelegate.swift, SceneDelegate.swift, ViewController.swiftを生成
-- Assets.xcassetsとBase.lprojディレクトリを作成し、AppIconやLaunchScreen/Main.storyboardを配置
-- Bundle IDやターゲットバージョンは指定可能
-- SwiftUIやStoryboardのどちらかを選択できるようにする
-
-【備考】
-- それぞれのテンプレートファイルは、プロジェクト名やパッケージ名、Bundle IDなどを自動で置換する
-- 生成後は、Android StudioやXcodeでそのまま開発を開始できる
+@../.github/android-template.md
+@../.github/ios-template.md

@@ -1,47 +1,39 @@
-# Android Template
+# Android プロジェクト構成ガイド
 
-このディレクトリは、Androidアプリプロジェクトの最小構成テンプレートです。
+Androidアプリの一般的なディレクトリ構成と、各ディレクトリにどのような用途のファイルを配置するかのガイドです。
 
-## ディレクトリ構成
+## ディレクトリ構成と用途
 
 ```
-android-template/
-├── build.gradle
-├── settings.gradle
-├── gradle.properties
+android-project/
+├── build.gradle, settings.gradle, gradle.properties
+│   └─ プロジェクト全体のビルド・設定ファイル
 ├── app/
 │   ├── build.gradle
+│   │   └─ アプリモジュールのビルド設定
 │   └── src/
 │       └── main/
 │           ├── AndroidManifest.xml
+│           │   └─ アプリのマニフェスト（権限・アクティビティ定義など）
 │           ├── kotlin/
-│           │   └── com/
-│           │       └── example/
-│           │           └── androidtest/
-│           │               └── MainActivity.kt
+│           │   └─ アプリのKotlinソースコード（パッケージごとにディレクトリ分割）
+│           ├── java/
+│           │   └─ Javaソースコード（Kotlinと同様、必要な場合のみ）
 │           ├── res/
-│           │   ├── layout/
-│           │   │   └── activity_main.xml
-│           │   ├── values/
-│           │   │   └── strings.xml
-│           │   └── mipmap-anydpi-v26/
-│           │       ├── ic_launcher.xml
-│           │       └── ic_launcher_round.xml
+│           │   ├── layout/   ─ 画面レイアウトXML
+│           │   ├── values/   ─ 文字列・色・スタイル等の定義
+│           │   ├── drawable/ ─ 画像・アイコン等
+│           │   ├── menu/     ─ メニュー定義
+│           │   ├── mipmap/   ─ アプリアイコン
+│           │   └── その他リソース
+│           └── assets/ ─ アプリ内で利用する静的ファイル（必要に応じて）
+│
+├── gradle/ ─ Gradleラッパー関連
+├── local.properties ─ 環境依存の設定
+└── ...
 ```
 
-## 必要なファイル一覧
-
-- `build.gradle` : プロジェクトのビルド設定
-- `settings.gradle` : モジュールの定義
-- `gradle.properties` : プロパティ設定
-- `app/build.gradle` : アプリモジュールのビルド設定
-- `app/src/main/AndroidManifest.xml` : マニフェストファイル
-- `app/src/main/kotlin/com/example/androidtest/MainActivity.kt` : メインアクティビティ
-- `app/src/main/res/layout/activity_main.xml` : レイアウトファイル
-- `app/src/main/res/values/strings.xml` : 文字列リソース
-- `app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml` : アプリアイコン
-- `app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml` : ラウンドアイコン
-
 ## 備考
-- パッケージ名やアプリ名はプロジェクトごとに適宜変更してください。
-- 追加のリソースや設定が必要な場合は、このテンプレートを拡張してご利用ください。 
+- パッケージ名やディレクトリ名はプロジェクトごとに調整してください。
+- テストコードは `src/test/` や `src/androidTest/` に配置します。
+- 追加のリソースや設定が必要な場合は、用途に応じてディレクトリを拡張してください。 

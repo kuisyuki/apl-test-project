@@ -5,25 +5,66 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.apltest.R
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Handler
+import android.os.Looper
 
 class HomeFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-        val button = view.findViewById<Button>(R.id.button)
-        button.setOnClickListener {
-            val toastLayout = layoutInflater.inflate(R.layout.custom_toast, null)
-            val toastText = toastLayout.findViewById<android.widget.TextView>(R.id.toast_text)
-            toastText.text = "Hello World"
-            val toast = android.widget.Toast(requireContext())
-            toast.view = toastLayout
-            toast.duration = android.widget.Toast.LENGTH_SHORT
-            toast.setGravity(android.view.Gravity.BOTTOM or android.view.Gravity.CENTER_HORIZONTAL, 0, 120)
-            toast.show()
+
+    private var title: String? = null
+    private val handler = Handler(Looper.getMainLooper())
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            title = it.getString(ARG_TITLE)
         }
-        return view
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as? AppCompatActivity)?.supportActionBar?.title = title
+
+        val fragmentContentTextView: TextView = view.findViewById(R.id.fragment_content_text)
+        val clickMeButton: Button = view.findViewById(R.id.click_me_button)
+        val helloWorldText: TextView = view.findViewById(R.id.hello_world_text)
+
+        if (title == getString(R.string.title_home)) {
+            fragmentContentTextView.text = title
+            clickMeButton.visibility = View.VISIBLE
+            // helloWorldTextはデフォルトでGONEなので、CLICK MEボタンが押されたときにのみVISIBLEにする
+
+            clickMeButton.setOnClickListener {
+                helloWorldText.visibility = View.VISIBLE
+                handler.postDelayed({
+                    helloWorldText.visibility = View.GONE
+                }, 2000)
+            }
+        } else {
+            fragmentContentTextView.text = title
+            clickMeButton.visibility = View.GONE
+            helloWorldText.visibility = View.GONE
+        }
+    }
+
+    companion object {
+        private const val ARG_TITLE = "param1"
+
+        @JvmStatic
+        fun newInstance(title: String) = HomeFragment().apply {
+            arguments = Bundle().apply {
+                putString(ARG_TITLE, title)
+            }
+        }
     }
 } 

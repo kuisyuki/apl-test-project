@@ -1,0 +1,30 @@
+@startuml
+' Android ライフサイクル アクティビティ図
+
+title Android 画面遷移ライフサイクル
+
+start
+:onCreate();
+
+:onStart();
+
+:onResume();
+
+:onPostResume();
+
+:ユーザー操作;
+
+:onPause();
+
+:onStop();
+
+if (再開する?) then (yes)
+  :onRestart();
+  :onStart();
+  :onResume();
+else (no)
+  :onDestroy();
+endif
+
+stop
+@enduml 

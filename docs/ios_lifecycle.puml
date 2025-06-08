@@ -1,0 +1,27 @@
+@startuml
+' iOS ライフサイクル アクティビティ図
+
+title iOS 画面遷移ライフサイクル
+
+start
+:viewDidLoad();
+
+:viewWillAppear();
+
+:viewDidAppear();
+
+:ユーザー操作;
+
+:viewWillDisappear();
+
+:viewDidDisappear();
+
+if (再開する?) then (yes)
+  :viewWillAppear();
+  :viewDidAppear();
+else (no)
+  :deinit;
+endif
+
+stop
+@enduml 

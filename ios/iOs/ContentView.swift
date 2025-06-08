@@ -13,9 +13,21 @@ struct ContentView: View {
     @State private var showLifecycleToast = false
     @State private var showHelloToast = false
     @State private var selectedTab: Tab = .home
+    @State private var showMenu = false
+    @State private var showNotifications = false
     
     enum Tab {
         case home, coupon, card, save, use
+        
+        var title: String {
+            switch self {
+            case .home: return "ホーム"
+            case .coupon: return "クーポン"
+            case .card: return "カード"
+            case .save: return "ためる"
+            case .use: return "つかう"
+            }
+        }
     }
     
     func showLifecycle(_ status: String) {
@@ -31,6 +43,8 @@ struct ContentView: View {
     }
     
     var body: some View {
+        ZStack {
+            NavigationView {
         TabView(selection: $selectedTab) {
             HomeView(lifecycleHistory: $lifecycleHistory, showHelloToast: $showHelloToast)
                 .tabItem {
@@ -62,6 +76,58 @@ struct ContentView: View {
                     Text("つかう")
                 }
                 .tag(Tab.use)
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        HStack(spacing: 8) {
+                            Button(action: {
+                                withAnimation(.spring()) {
+                                    showMenu.toggle()
+                                }
+                            }) {
+                                Image(systemName: "line.horizontal.3")
+                                    .foregroundColor(.primary)
+                            }
+                            Text(selectedTab.title)
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            showNotifications = true
+                        }) {
+                            Image(systemName: "bell")
+                                .foregroundColor(.primary)
+                        }
+                    }
+                }
+            }
+            
+            if showMenu {
+                Color.black.opacity(0.3)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            showMenu = false
+                        }
+                    }
+            }
+            
+            if showMenu {
+                HStack(spacing: 0) {
+                    SlideMenuView(showMenu: $showMenu)
+                        .frame(width: 300)
+                        .transition(.move(edge: .leading))
+                    
+                    Spacer()
+                }
+                .ignoresSafeArea()
+            }
+        }
+        .sheet(isPresented: $showNotifications) {
+            NotificationListView()
         }
         .onChange(of: scenePhase) { newPhase in
             switch newPhase {
@@ -125,6 +191,104 @@ struct ContentView: View {
                 }
             }
         )
+    }
+}
+
+struct SlideMenuView: View {
+    @Binding var showMenu: Bool
+    
+    var body: some View {
+        ZStack {
+            Color.white
+            
+            VStack(alignment: .leading, spacing: 0) {
+                HStack {
+                    Text("メニュー")
+                        .font(.title)
+                        .bold()
+                    Spacer()
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            showMenu = false
+                        }
+                    }) {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.primary)
+                            .padding()
+                    }
+                }
+                .padding()
+                
+                Divider()
+                
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 0) {
+                        MenuButton(title: "設定", icon: "gear") {
+                            // 設定画面への遷移
+                        }
+                        MenuButton(title: "ヘルプ", icon: "questionmark.circle") {
+                            // ヘルプ画面への遷移
+                        }
+                        MenuButton(title: "お問い合わせ", icon: "envelope") {
+                            // お問い合わせ画面への遷移
+                        }
+                    }
+                }
+            }
+        }
+        .edgesIgnoringSafeArea(.vertical)
+    }
+}
+
+struct MenuButton: View {
+    let title: String
+    let icon: String
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 16) {
+                Image(systemName: icon)
+                    .frame(width: 24, height: 24)
+                Text(title)
+                Spacer()
+            }
+            .foregroundColor(.primary)
+            .padding()
+        }
+    }
+}
+
+struct NotificationListView: View {
+    @Environment(\.dismiss) private var dismiss
+    
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(1...5, id: \.self) { index in
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("お知らせ \(index)")
+                            .font(.headline)
+                        Text("これはサンプルのお知らせメッセージです。")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.vertical, 8)
+                }
+            }
+            .navigationTitle("お知らせ")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.primary)
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".PontaServiceFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
+
+        <!-- つかうサービス ヘッダー -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/material_grey_300"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="つかうサービス"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Ponta PLAY, Ponta特典交換, Pontaマンガ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp">
+
+            <Button
+                android:id="@+id/ponta_play_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rounded_button"
+                android:drawableEnd="@drawable/ic_arrow_right_black"
+                android:text="Ponta PLAYですべて見る"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:minHeight="48dp"/>
+
+            <Button
+                android:id="@+id/ponta_reward_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/white_rounded_button"
+                android:drawableEnd="@drawable/ic_arrow_right_black"
+                android:text="Ponta特典交換ですべて見る"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:minHeight="48dp"/>
+
+            <Button
+                android:id="@+id/ponta_manga_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/white_rounded_button"
+                android:drawableEnd="@drawable/ic_arrow_right_black"
+                android:text="Pontaマンガを見る"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:minHeight="48dp"/>
+
+        </LinearLayout>
+
+        <!-- その他サービス -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="その他サービス"
+                android:textColor="@color/material_grey_600"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- サービスリスト -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="8dp">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_sync_black_24dp"
+                        android:tint="@color/material_blue_500"
+                        android:layout_marginEnd="12dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ポイント交換"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/material_grey_300"
+                    android:layout_marginStart="36dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="8dp">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_credit_card_black_24dp"
+                        android:tint="@color/material_blue_500"
+                        android:layout_marginEnd="12dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STOCK POINT for CONNECT"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/material_grey_300"
+                    android:layout_marginStart="36dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="8dp">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_security_black_24dp"
+                        android:tint="@color/material_blue_500"
+                        android:layout_marginEnd="12dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ponta保険"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/material_grey_300"
+                    android:layout_marginStart="36dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="8dp">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_label_black_24dp"
+                        android:tint="@color/material_blue_500"
+                        android:layout_marginEnd="12dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="買っトク！Ponta"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/material_grey_300"
+                    android:layout_marginStart="36dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="8dp">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_receipt_black_24dp"
+                        android:tint="@color/material_blue_500"
+                        android:layout_marginEnd="12dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="お試し引換券"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- たまる・つかえるお店、サービス ヘッダー -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/material_grey_300"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="たまる・つかえるお店、サービス"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- グリッドレイアウト -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="5"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false">
+
+            <!-- 15個のプレースホルダーアイテム -->
+            <!-- 各アイテムはLinearLayoutで囲み、ImageViewとTextViewを配置 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="サービス1" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="お店1" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="サービス2" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="お店2" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="サービス3" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="お店3" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="サービス4" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="お店4" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="サービス5" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp"
+                 android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="お店5" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="サービス6" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="お店6" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="サービス7" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="お店7" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_square_black_24dp" android:tint="@color/material_grey_700"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="サービス8" android:textSize="12sp" android:textAlignment="center" android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+        </GridLayout>
+
+        <!-- 全てのお店、サービスを見るボタン -->
+        <Button
+            android:id="@+id/view_all_stores_services_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/white_rounded_button"
+            android:drawableEnd="@drawable/ic_arrow_right_black"
+            android:text="全てのお店、サービスを見る"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:minHeight="48dp"/>
+
+    </LinearLayout>
+</ScrollView>
+

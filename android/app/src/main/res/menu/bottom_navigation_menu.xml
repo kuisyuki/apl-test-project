@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home"
+        android:title="ホーム" />
+    <item
+        android:id="@+id/navigation_coupon"
+        android:icon="@drawable/ic_coupon"
+        android:title="クーポン" />
+    <item
+        android:id="@+id/navigation_card"
+        android:icon="@drawable/ic_card"
+        android:title="カード" />
+    <item
+        android:id="@+id/navigation_save"
+        android:icon="@drawable/ic_save"
+        android:title="ためる" />
+    <item
+        android:id="@+id/navigation_use"
+        android:icon="@drawable/ic_use"
+        android:title="つかう" />
+</menu> 
